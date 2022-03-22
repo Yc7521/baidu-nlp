@@ -62,24 +62,35 @@
 
   function query() {
     $.ajax({
-      type: "POST",
-      url: $('#url').val(),
-      data: $('#form').serialize(),
-      async: false,
-      error: function (request) {
-        alert("Connection error");
-      },
-      success: function (data) {
-        let str;
-        try {
-          str = JSON.stringify(JSON.parse(data), null, 2)
-        } catch (e) {
-          str = data;
+        type: "POST",
+        url: $('#url').val(),
+        data: $('#form').serialize(),
+        async: false,
+        error: function (request) {
+          alert("Connection error");
+        },
+        success: function (data) {
+          let str;
+          try {
+            // if data is a object stringify it
+            // else if data is a json string
+            // parse it then stringify it
+            if (typeof data === 'object') {
+              str = JSON.stringify(data, null, 2);
+            } else if (typeof data === 'string') {
+              str = JSON.stringify(JSON.parse(data), null, 2);
+            } else {
+              str = data;
+            }
+          } catch (e) {
+            str = data;
+          }
+          $("#out").text(str);
+          $("#out-area").show();
         }
-        $("#out").text(str);
-        $("#out-area").show();
       }
-    });
+    )
+    ;
   }
 </script>
 </body>

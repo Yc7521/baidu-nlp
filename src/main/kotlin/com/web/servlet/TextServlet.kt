@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@WebServlet(name = "TextServlet", value = ["/api/ai-text"])
+@WebServlet(name = "TextServlet", value = ["/api/ai-text-emotion"])
 class TextServlet : HttpServlet() {
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
         super.doGet(request, response)
@@ -39,7 +39,8 @@ class TextServlet : HttpServlet() {
                 }
             )
         }.toJson().toString()
-        response.contentType = "application/json"
+        // set content type and utf-8
+        response.contentType = "application/json;charset=utf-8"
         response.writer.print(json)
     }
 }

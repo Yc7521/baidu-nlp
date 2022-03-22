@@ -1,0 +1,16 @@
+.fixed-bottom {
+    position: fixed;
+    display: flex;
+    justify-content: end;
+    bottom: 5px;
+    width: 100%;
+}
+
+.fixed-bottom .btn {
+    padding: 5px;
+    border-radius: 30%;
+}
+
+pre {
+    white-space: pre-wrap;
+}
